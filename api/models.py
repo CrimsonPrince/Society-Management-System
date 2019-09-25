@@ -12,8 +12,8 @@ class User(AbstractUser):
 
 class Society(models.Model):
     name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    creation_date = models.DateField()
+    email = models.EmailField(max_length=255, unique=True)
+    creation_date = models.DateField(auto_now_add=True)
     description = models.CharField(max_length=1000)
     category = models.CharField(max_length=255)
     members = models.ManyToManyField('User', related_name="membership")
