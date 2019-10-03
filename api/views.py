@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -9,29 +10,13 @@ from . import serializers
 
 logger = logging.getLogger(__name__)
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = (IsAuthenticated,)
+class UserListView(ListAPIView):
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
 
-    @action(detail=False, methods=['post'])
-    def add(self, request):
-        user = serializers.CreateUserSerializer(data=request.data)
-        if(user.is_valid()):
-            print(user.validated_data)
-        return Response("hell")
-
-
-
-    @action(detail=False)
-    def recent_users(self, request):
-        recent_users = models.User.objects.all().order_by('email')
-        page = self.paginate_queryset(recent_users)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        serializer = self.get_serializer(recent_users, many=True)
-        return Response(serializer.data)
+class UserDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = models.User.objects.all()
+    serializer_class = serializers.UserSerializer
 
 class SocietyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (IsAuthenticated,)
@@ -47,4 +32,4 @@ class SocietyViewSet(viewsets.ReadOnlyModelViewSet):
 
 class UserCreateView(CreateAPIView):
     queryset = models.User.objects.all()
-    serializer_class = serializers.UserSerializer
+    serializer_class = serializers.CreateUserSerializer
