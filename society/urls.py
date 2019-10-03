@@ -23,6 +23,7 @@ from rest_framework_simplejwt import views as jwt_views
 router = routers.DefaultRouter()
 router.register(r'user', views.UserViewSet)
 router.register(r'society', views.SocietyViewSet)
+router.register(r'society/create', views.UserCreateView)
 
 urlpatterns = [
     path('', include(router.urls)),
