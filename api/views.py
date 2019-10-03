@@ -18,12 +18,15 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
 
-class SocietyViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = (IsAuthenticated,)
+class SocietyListView(ListAPIView):
     queryset = models.Society.objects.all()
     serializer_class = serializers.SocietySerializer
 
-    @action(detail=True)
+class SocietyDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = models.Society.objects.all()
+    serializer_class = serializers.SocietySerializer
+
+    @action(detail=True)    
     def get_members(self, request,pk):
         society = self.get_object()
         members = society.member.all()
