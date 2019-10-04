@@ -18,6 +18,10 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
 
+class UserCreateView(CreateAPIView):
+    queryset = models.User.objects.all()
+    serializer_class = serializers.CreateUserSerializer
+
 class SocietyListView(ListAPIView):
     queryset = models.Society.objects.all()
     serializer_class = serializers.SocietySerializer
@@ -33,6 +37,6 @@ class SocietyDetailView(RetrieveUpdateDestroyAPIView):
         serializer = serializers.UserSerializer(members, many=True)
         return Response(serializer.data)
 
-class UserCreateView(CreateAPIView):
-    queryset = models.User.objects.all()
-    serializer_class = serializers.CreateUserSerializer
+class SocietyCreateView(CreateAPIView):
+    queryset = models.Society.objects.all()
+    serializer_class = serializers.SocietySerializer
