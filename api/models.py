@@ -9,6 +9,7 @@ class Society(models.Model):
     creation_date = models.DateField(auto_now_add=True)
     description = models.CharField(max_length=1000)
     category = models.CharField(max_length=255)
+    logo = models.CharField(max_length=1024)
 
     def __str__(self):
         return self.name
