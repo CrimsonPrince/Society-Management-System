@@ -7,7 +7,7 @@ from . import models
 class SocietySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Society
-        fields = ('id', 'email', 'name', 'description', 'category', 'member')
+        fields = ('id', 'email', 'name', 'description', 'category')
 
 class CreateSocietySerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,7 +20,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
     class Meta: 
         model = models.User
         fields = ('email', 'username', 'first_name', 'last_name', 'age', 'password')
-        
+
 class UserSerializer(serializers.ModelSerializer):
 
     age = serializers.CharField(source='profile.age')
