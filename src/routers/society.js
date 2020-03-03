@@ -1,11 +1,7 @@
 const express = require('express')
-const User = require('../models/User')
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const passport = require('passport');
+const User = require('../models/Society')
 
 const router = express.Router()
-const key = process.env.JWT_KEY;
 
 router.get('/user', async (req, res) => {
     // Create a new user
@@ -50,14 +46,5 @@ router.delete('/user', async(req, res) => {
      res.status(400).send(error)
  }
  })
-
- router.get('/profile', (req, res, next) => {
-    //We'll just send back the user details and the token
-    res.json({
-      message : 'You made it to the secure route',
-      user : req.user,
-      token : req.query.secret_token
-    })
-  });
-
+ 
 module.exports = router

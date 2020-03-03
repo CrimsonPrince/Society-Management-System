@@ -24,42 +24,38 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         minLength: 7
-    },
-    tokens: [{
-        token: {
-            type: String,
-            required: true
-        }
-    }]
-})
-
-userSchema.pre('save', async function (next) {
-    // Hash the password before saving the user model
-    const user = this
-    if (user.isModified('password')) {
-        user.password = await bcrypt.hash(user.password, 8)
     }
-    next()
 })
 
-userSchema.methods.generateAuthToken = async function() {
-    // Generate an auth token for the user
-    const user = this
-    const token = jwt.sign({_id: user._id}, process.env.JWT_KEY)
-    user.tokens = user.tokens.concat({token})
-    await user.save()
-    return token
-}
+userSchema.pre('save', async function(next){
+    //'this' refers to the current document about to be saved
+    const user = this;
+    //Hash the password with a salt round of 10, the higher the rounds the more secure, but the slower
+    //your application becomes.
+    const hash = await bcrypt.hash(this.password, 10);
+    //Replace the plain text password with the hash and then store it
+    this.password = hash;
+    //Indicates we're done and moves on to the next middleware
+    next();
+  })
+
+userSchema.methods.isValidPassword = async function(password){
+    const user = this;
+    //Hashes the password sent by the user for login and checks if the hashed password stored in the
+    //database matches the one sent. Returns true if it does else false.
+    const compare = await bcrypt.compare(password, user.password);
+    return compare;
+  }
 
 userSchema.statics.getAll = async () => {
     // Find All Users
-    const users = await User.find({})
+    const users = await User.find({}, {password: false})
     return users
 }
 
-userSchema.statics.findById= async(userId) => {
+userSchema.statics.findById = async(userId) => {
     // Search for a user by email and password.
-    const user = await User.findById(userId)
+    const user = await User.findById(userId, {password: false})
     if (!user) {
         throw new Error({ error: 'No User Found with This ID' })
     }
