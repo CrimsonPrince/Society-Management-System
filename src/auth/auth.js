@@ -5,7 +5,7 @@ const UserModel = require('../models/User');
 const key = process.env.JWT_KEY;
 
 //Create a passport middleware to handle user registration
-passport.use('signup', new localStrategy({
+passport.use('register', new localStrategy({
   usernameField : 'email',
   passwordField : 'password'
 }, async (email, password, done) => {
@@ -52,7 +52,7 @@ passport.use(new JWTstrategy({
   //secret we used to sign our JWT
   secretOrKey : 'top_secret',
   //we expect the user to send the token as a query parameter with the name 'secret_token'
-  jwtFromRequest : ExtractJWT.fromUrlQueryParameter('secret_token')
+  jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken()
 }, async (token, done) => {
   try {
     //Pass the user details to the next middleware

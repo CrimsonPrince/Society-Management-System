@@ -1,23 +1,20 @@
 const express = require('express')
 const User = require('../models/User')
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const passport = require('passport');
 
 const router = express.Router()
-const key = process.env.JWT_KEY;
 
-router.get('/user', async (req, res) => {
+router.get('/', async (req, res) => {
     // Create a new user
     try {
         users = await User.getAll()
+        console.log("Retrieved all Users")
         res.send(users)
     } catch (error) {
         res.status(400).send(error)
     }
 })
 
-router.get('/user/:userId', async (req, res) => {
+router.get('/:userId', async (req, res) => {
     // Create a new user
     try {
         user = await User.findById(req.param.userId)
@@ -27,7 +24,7 @@ router.get('/user/:userId', async (req, res) => {
     }
 })
 
-router.post('/user', async (req, res) => {
+router.post('/', async (req, res) => {
     // Create a new user
     try {
         const user = new User(req.body)
@@ -39,7 +36,7 @@ router.post('/user', async (req, res) => {
     }
 })
 
-router.delete('/user', async(req, res) => {
+router.delete('/', async(req, res) => {
     try{
      const { id } = req.body
      User.findByIdAndDelete(id,  (err,id) => {
@@ -51,13 +48,14 @@ router.delete('/user', async(req, res) => {
  }
  })
 
- router.get('/profile', (req, res, next) => {
+router.get('/profile', async(req, res, next) => {
+    console.log("Hi")
+    try {
+        res.send(200)
+    } catch (error) {
+        res.status(400).send(error)
+    }
     //We'll just send back the user details and the token
-    res.json({
-      message : 'You made it to the secure route',
-      user : req.user,
-      token : req.query.secret_token
-    })
-  });
+})
 
 module.exports = router
