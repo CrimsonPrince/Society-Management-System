@@ -3,8 +3,8 @@ const User = require('../models/User')
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
-    // Create a new user
+router.get('/users/', async (req, res) => {
+    // Retrieve all Users
     try {
         users = await User.getAll()
         console.log("Retrieved all Users")
@@ -14,23 +14,37 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/:userId', async (req, res) => {
+router.post('/users/', async (req, res) => {
     // Create a new user
     try {
-        user = await User.findById(req.param.userId)
-        res.send(user)
+        const user = new User(req.body)
+        await user.save()
+        const token = await user
+        res.status(201).send({ user })
     } catch (error) {
         res.status(400).send(error)
     }
 })
 
-router.post('/', async (req, res) => {
-    // Create a new user
+router.get('/profile', async(req, res, next) => {
+    console.log("Hi")
     try {
-        const user = new User(req.body)
-        await user.save()
-        const token = await user.generateAuthToken()
-        res.status(201).send({ user, token })
+        res.sendStatus(200)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+    //We'll just send back the user details and the token
+})
+
+
+router.get('/users/:userId', async (req, res) => {
+    // Create a new user
+    console.log(req.params.userId)
+    const id = req.params.userId
+    try {
+        user = await User.findUserById(id)
+        console.log(user)
+        res.send(user)
     } catch (error) {
         res.status(400).send(error)
     }
@@ -47,15 +61,5 @@ router.delete('/', async(req, res) => {
      res.status(400).send(error)
  }
  })
-
-router.get('/profile', async(req, res, next) => {
-    console.log("Hi")
-    try {
-        res.send(200)
-    } catch (error) {
-        res.status(400).send(error)
-    }
-    //We'll just send back the user details and the token
-})
 
 module.exports = router

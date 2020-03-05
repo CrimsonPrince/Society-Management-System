@@ -47,19 +47,20 @@ userSchema.methods.isValidPassword = async function(password){
     return compare;
   }
 
-userSchema.statics.getAll = async () => {
-    // Find All Users
-    const users = await User.find({}, {password: false})
-    return users
-}
-
-userSchema.statics.findById = async(userId) => {
+userSchema.statics.findUserById = async(userId) => {
     // Search for a user by email and password.
-    const user = await User.findById(userId, {password: false})
+    const user = await User.findById(userId, {password:false, __v: false})
     if (!user) {
         throw new Error({ error: 'No User Found with This ID' })
     }
+    console.log("Found User with ID: " + user.id)
     return user
+}
+
+userSchema.statics.getAll = async () => {
+    // Find All Users
+    const users = await User.find({}, {password: false, __v: false})
+    return users
 }
 
 const User = mongoose.model('User', userSchema)

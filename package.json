@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f .env nodemon src/app.js"
+    "start": "env-cmd -f .env nodemon src/app.js",
+    "debug": "env-cmd -f .env nodemon --inspect src/app.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "express-pino-logger": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.3",
     "mongoose": "^5.9.1",
@@ -26,6 +28,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "pino": "^5.17.0",
     "validator": "^12.2.0",
     "yarn": "^1.22.0"
   }
