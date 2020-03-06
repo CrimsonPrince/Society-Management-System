@@ -13,7 +13,7 @@ const app = express()
 
 app.use(express.json())
 app.use(unsecuredRouter)
-app.use(passport.authenticate('jwt', { session : false }), userRouter)
+app.use("/users/", passport.authenticate('jwt', { session : false }), userRouter)
 
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);

@@ -3,7 +3,7 @@ const User = require('../models/User')
 
 const router = express.Router()
 
-router.get('/users/', async (req, res) => {
+router.get('/', async (req, res) => {
     // Retrieve all Users
     try {
         users = await User.getAll()
@@ -14,7 +14,7 @@ router.get('/users/', async (req, res) => {
     }
 })
 
-router.post('/users/', async (req, res) => {
+router.post('/', async (req, res) => {
     // Create a new user
     try {
         const user = new User(req.body)
@@ -26,10 +26,9 @@ router.post('/users/', async (req, res) => {
     }
 })
 
-router.get('/profile', async(req, res, next) => {
-    console.log("Hi")
+router.get('/profile', async(req, res) => {
     try {
-        res.sendStatus(200)
+        res.send(req.user)
     } catch (error) {
         res.status(400).send(error)
     }
@@ -37,25 +36,19 @@ router.get('/profile', async(req, res, next) => {
 })
 
 
-router.get('/users/:userId', async (req, res) => {
-    // Create a new user
-    console.log(req.params.userId)
-    const id = req.params.userId
+router.get('/:userId', async (req, res) => {
     try {
-        user = await User.findUserById(id)
-        console.log(user)
+        user = await User.findUserById(req.params.userId)
         res.send(user)
     } catch (error) {
         res.status(400).send(error)
     }
 })
 
-router.delete('/', async(req, res) => {
+router.delete('/:userId', async(req, res) => {
     try{
-     const { id } = req.body
-     User.findByIdAndDelete(id,  (err,id) => {
-        res.json({success: true, message: "User deleted.", id})
-      })
+        user = await User.deleteUser(req.params.userId)
+        res.send(user)
  } 
  catch (error) {
      res.status(400).send(error)

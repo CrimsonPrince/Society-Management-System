@@ -57,6 +57,17 @@ userSchema.statics.findUserById = async(userId) => {
     return user
 }
 
+userSchema.statics.deleteUser = async(userId) => {
+    // Search for a user by email and password.
+    const user = await User.findByIdAndDelete(userId)
+    if (!user) {
+        throw new Error({ error: 'No User Found with This ID' })
+    }
+    delete user.password
+    console.log("Deleted User with ID: " + user.id)
+    return user
+}
+
 userSchema.statics.getAll = async () => {
     // Find All Users
     const users = await User.find({}, {password: false, __v: false})
