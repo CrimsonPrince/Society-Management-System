@@ -47,8 +47,8 @@ router.get('/:userId', async (req, res) => {
 
 router.delete('/:userId', async(req, res) => {
     try{
-        user = await User.deleteUser(req.params.userId)
-        res.send(user)
+        await User.deleteUser(req.params.userId)
+        res.sendStatus(200)
  } 
  catch (error) {
      res.status(400).send(error)
