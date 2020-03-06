@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const pino = require('pino')
+const logger = pino({ level: process.env.LOG_LEVEL || 'info' })
 
 const userSchema = mongoose.Schema({
     name: {
@@ -45,7 +47,7 @@ userSchema.statics.findUserById = async(userId) => {
     if (!user) {
         throw new Error({ error: 'No User Found with This ID' })
     }
-    console.log("Found User with ID: " + user.id)
+    logger.info("Found User with ID: " + user.id)
     return user
 }
 
@@ -54,13 +56,13 @@ userSchema.statics.deleteUser = async(userId) => {
     if (!user) {
         throw new Error({ error: 'No User Found with This ID' })
     }
-    console.log("Deleted User with ID: " + user.id)
+    logger.info("Deleted User with ID: " + user.id)
     return user
 }
 
 userSchema.statics.getAll = async () => {
-    // Find All Users
     const users = await User.find({}, {password: false, __v: false})
+    logger.info("Retrieved All Users")
     return users
 }
 

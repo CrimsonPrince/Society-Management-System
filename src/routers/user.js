@@ -4,10 +4,8 @@ const User = require('../models/User')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-    // Retrieve all Users
     try {
         users = await User.getAll()
-        console.log("Retrieved all Users")
         res.send(users)
     } catch (error) {
         res.status(400).send(error)
@@ -15,7 +13,6 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    // Create a new user
     try {
         const user = new User(req.body)
         await user.save()
@@ -32,7 +29,6 @@ router.get('/profile', async(req, res) => {
     } catch (error) {
         res.status(400).send(error)
     }
-    //We'll just send back the user details and the token
 })
 
 
