@@ -35,7 +35,6 @@ const pokemonSchema = mongoose.Schema({
 
 
 pokemonSchema.statics.getAll = async () => {
-    logger.info("Attempt")
     const pokemon = await Pokemon.find({}).sort( { id: 1 } )
     logger.info("Retrieved All Pokemon")
     return pokemon
@@ -50,6 +49,5 @@ pokemonSchema.statics.findPokemonById = async(pokemonId) => {
 }
 
 const Pokemon = mongoose.model('Pokemon', pokemonSchema)
-mongoose.set('debug', true);
 
 module.exports = Pokemon
