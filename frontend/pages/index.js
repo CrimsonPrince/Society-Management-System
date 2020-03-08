@@ -2,15 +2,61 @@ import Layout from '../components/MyLayout';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 
+const Pokemon = props => (
+  <div className="pokemon-card">
+  <Link href="/p/[id]" as={`/p/${props.id}`}>
+    <img src={props.imageurl}   />
+  </Link>
+</div>
+);
+
 const Index = props => (
   <Layout>
-      {props.pokemon.map(show => (
-        <li key={show.id}>
-          <Link href="/p/[id]" as={`/p/${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
+  <div id="pokemon-list">
+      {props.pokemons.map(pokemon => (
+        <Pokemon name={pokemon.name} id={pokemon.id} imageurl={pokemon.imageurl}/>
       ))}
+  </div>
+  <style jsx>{`
+        h1,
+        a {
+          font-family: 'Arial';
+        }
+
+        ul {
+          padding: 0;
+        }
+
+        li {
+          list-style: none;
+          margin: 5px 0;
+        }
+
+        a {
+          text-decoration: none;
+          color: blue;
+        }
+
+        a:hover {
+          opacity: 0.6;
+        }
+
+        #pokemon-list {
+          display: inline-flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+        .pokemon-card {
+          background-size: contain;
+          background-repeat: no-repeat;
+          height: 160px;
+          width: 160px; 
+          margin: 10px;
+          position: relative;
+          overflow: hidden;
+          }
+      `}</style>
   </Layout>
 );
 
@@ -21,7 +67,7 @@ Index.getInitialProps = async function() {
   console.log(`Show data fetched. Count: ${data.length}`);
 
   return {
-    pokemon: data
+    pokemons: data
   };
 };
 
