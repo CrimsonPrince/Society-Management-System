@@ -19,7 +19,7 @@ app.use(expressLogger);
 app.use(express.json())
 app.use(unsecuredRouter)
 app.use("/users/", passport.authenticate('jwt', { session : false }), userRouter)
-app.use("/pokemon/", passport.authenticate('jwt', { session : false }), pokemonRouter)
+app.use("/pokemon/", pokemonRouter)
 
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
