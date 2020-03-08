@@ -8,7 +8,7 @@ const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
 const expressLogger = expressPino({ logger });
 
 const userRouter = require('./routers/user')
-const societyRouter = require('./routers/society')
+const pokemonRouter = require('./routers/pokemon')
 const unsecuredRouter = require('./routers/unsecured')
 require('./db/db')
 require('./auth/auth');
@@ -19,6 +19,7 @@ app.use(expressLogger);
 app.use(express.json())
 app.use(unsecuredRouter)
 app.use("/users/", passport.authenticate('jwt', { session : false }), userRouter)
+app.use("/pokemon/", passport.authenticate('jwt', { session : false }), pokemonRouter)
 
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
