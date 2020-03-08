@@ -3,6 +3,7 @@ const passport = require('passport');
 const port = process.env.PORT
 const pino = require('pino');
 const expressPino = require('express-pino-logger');
+const cors = require('cors')
 
 const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
 const expressLogger = expressPino({ logger });
@@ -15,6 +16,7 @@ require('./auth/auth');
 
 const app = express()
 
+app.use(cors())
 app.use(expressLogger);
 app.use(express.json())
 app.use(unsecuredRouter)

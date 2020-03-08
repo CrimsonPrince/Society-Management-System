@@ -41,10 +41,11 @@ pokemonSchema.statics.getAll = async () => {
 }
 
 pokemonSchema.statics.findPokemonById = async(pokemonId) => {
-    const pokemon = await Pokemon.findById(pokemonId)
+    const pokemon = await Pokemon.findOne({ id : pokemonId })
     if (!pokemon) {
         throw new Error({ Error: 'No pokemon Found with This ID' })
     }
+    logger.info("Found Pokemon with ID: " + pokemonId)
     return pokemon
 }
 
