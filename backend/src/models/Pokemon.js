@@ -5,7 +5,7 @@ const logger = pino({ level: process.env.LOG_LEVEL || 'info' })
 
 const pokemonSchema = mongoose.Schema({
     name: { type: String },
-    id: { type: String },
+    id: { type: Number },
     imageurl: { type: String },
     xdescription: { type: String },
     ydescription: { type: String },
@@ -14,8 +14,9 @@ const pokemonSchema = mongoose.Schema({
     weight: { type: String },
     typeofpokemon: [{ type: String }],
     weaknesses: [{ type: String }],
-    evolutions: [{ type: String }],
+    evolutions: [{ type: Number }],
     abilities: [{ type: String }],
+    color: [{ type: String }],
     hp: { type: Number },
     attack: { type: Number },
     defense: { type: Number },
@@ -28,7 +29,7 @@ const pokemonSchema = mongoose.Schema({
     genderless: { type: Number },
     cycles: { type: String },
     egg_groups: { type: String },
-    evolvedfrom: { type: String },
+    evolvedfrom: { type: Number },
     reason: { type: String },
     base_exp: { type: String }
 })

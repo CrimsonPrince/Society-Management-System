@@ -1,4 +1,5 @@
-[
+{
+  "pokemon": [
     {
       "name": "Bulbasaur",
       "id": "1",
@@ -23394,5 +23395,79 @@
       "reason": "(Pok\u00e9mon GO only, 400 Meltan Candies)",
       "base_exp": "\u2014"
     }
-  ]
+  ],
+  "Types": [
+    {
+      "name" : "Normal",
+      "color": "#002bb8"
+    },
+    {
+      "name": "Fighting",
+      "color" : "#C03028" 
+    },
+    {
+      "name" : "Flying",
+      "color" : "#A890F0"
+    },
+    {
+    "name" : "Poison",
+    "color" : "#A040A0"
+    },
+    {
+    "name" : "Ground",
+    "color": "#E0C068"
+    },
+    {
+    "name" : "Rock",
+    "color" : "#B8A038"
+    },
+    {
+    "name" : "Bug",
+    "color" : "#A8B820" 
+    },
+    {
+      "name" : "Ghost",
+      "color" : "#705898"
+    },
+    {
+      "name": "Steel",
+      "color" : "#B8B8D0"
+    },
+    {
+      "name" : "Fire",
+      "color" : "#F08030"
+    },
+    {
+      "name" : "Water",
+      "color" : "#6890F0"
+    },
+    {
+      "name" : "Grass",
+      "color" : "#78C850"
+    },
+    {
+      "name" : "Electric",
+      "color" : "#F8D030"
+    },
+    {
+      "name" : "Psychic",
+      "color" : "#F85888"
+    },
+    {
+      "name" : "Ice",
+      "color" : "#98D8D8"
+    },
+    {
+      "name" : "Dragon",
+      "color" : "#7038F8"
+    },
+    {
+      "name" : "Dark",
+      "color" : "#705848"
+    },
+    {
+      "name" : "Fairy",
+      "color" : "#EE99AC"
+    }
+  ]}
   
