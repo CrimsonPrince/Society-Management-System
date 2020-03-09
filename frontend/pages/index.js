@@ -1,6 +1,7 @@
 import Layout from '../components/MyLayout';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
+import Grid from '@material-ui/core/Grid';
 
 
 const Pokemon = props => (
@@ -11,7 +12,7 @@ const Pokemon = props => (
         .pokemon-card {
           background-size: contain;
           background-repeat: no-repeat;
-          background-image: url(${props.imageurl}) , linear-gradient(to right, ${props.color[0]} 50%, ${props.color} 50%);
+          background-image: url(${props.imageurl}) , linear-gradient(to left, ${props.color[0]} 50%, ${props.color} 50%);
           height: 160px;
           width: 160px; 
           margin: 10px;
@@ -39,11 +40,16 @@ const Pokemon = props => (
 const Index = props => (
   <Layout>
   <div id="pokemon-list">
+  <Grid container spacing={1}>
       {props.pokemons.map(pokemon => (
+        <Grid item xs={2}>
         <Pokemon name={pokemon.name} id={pokemon.id} imageurl={pokemon.imageurl} color={pokemon.color}/>
+        </Grid>
       ))}
+      </Grid>
   </div>
   <style jsx>{`
+        .pokemon-list { flex-grow: 1; }
         h1,
         a {
           font-family: 'Arial';
@@ -67,21 +73,6 @@ const Index = props => (
           opacity: 0.6;
         }
 
-        #pokemon-list {
-          display: inline-flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-        }
-
-        .pokemon-card {
-          background-size: contain;
-          background-repeat: no-repeat;
-          height: 160px;
-          width: 160px; 
-          margin: 10px;
-          position: relative;
-          overflow: hidden;
-          }
       `}</style>
   </Layout>
 );
