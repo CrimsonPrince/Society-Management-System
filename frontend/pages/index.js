@@ -1,7 +1,13 @@
 import Layout from '../components/MyLayout';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
 
 
 const Pokemon = props => (
@@ -13,9 +19,11 @@ const Pokemon = props => (
           background-size: contain;
           background-repeat: no-repeat;
           background-image: url(${props.imageurl}) , linear-gradient(to left, ${props.color[0]} 50%, ${props.color} 50%);
-          height: 160px;
-          width: 160px; 
-          margin: 10px;
+          max-width: 160px;
+          max-height: 160px;
+          min-height: 160px;
+          min-width: 160px;
+          margin: 10px; 
           position: relative;
           overflow: hidden;
           }
@@ -37,45 +45,53 @@ const Pokemon = props => (
  </Link>
 );
 
-const Index = props => (
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  tile: {
+    height: '150',
+    width: '150',
+  },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
+}));
+
+export default function Index(props) {
+  const classes = useStyles();
+  return (
   <Layout>
-  <div id="pokemon-list">
-  <Grid container spacing={1}>
+  {/* <GridList cellHeight={160} cols={3}>
       {props.pokemons.map(pokemon => (
-        <Grid item xs={2}>
+        <GridListTile cols={1}>
         <Pokemon name={pokemon.name} id={pokemon.id} imageurl={pokemon.imageurl} color={pokemon.color}/>
-        </Grid>
+        </GridListTile>
       ))}
-      </Grid>
-  </div>
-  <style jsx>{`
-        .pokemon-list { flex-grow: 1; }
-        h1,
-        a {
-          font-family: 'Arial';
-        }
+      </GridList> */}
 
-        ul {
-          padding: 0;
-        }
-
-        li {
-          list-style: none;
-          margin: 5px 0;
-        }
-
-        a {
-          text-decoration: none;
-          color: blue;
-        }
-
-        a:hover {
-          opacity: 0.6;
-        }
-
-      `}</style>
+      <GridList cellHeight={160} cellWidth={160} className={classes.gridList}>
+        {props.pokemons.map(pokemon => (
+          <GridListTile  cellHeight={160} cellWidth={160} key={pokemon.imageurl}>
+            <img src={pokemon.imageurl} alt={pokemon.name} />
+            <GridListTileBar
+              title={pokemon.name}
+              actionIcon={
+                <IconButton aria-label={`info about ${pokemon.name}`} className={classes.icon}>
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </GridListTile>
+        ))}
+      </GridList>
   </Layout>
-);
+  );
+}
 
 Index.getInitialProps = async function() {
   const res = await fetch('http://localhost:3001/pokemon');
@@ -86,5 +102,3 @@ Index.getInitialProps = async function() {
     pokemons: data
   };
 };
-
-export default Index;
