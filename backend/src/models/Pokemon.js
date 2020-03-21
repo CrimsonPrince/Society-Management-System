@@ -36,7 +36,7 @@ const pokemonSchema = mongoose.Schema({
 
 
 pokemonSchema.statics.getAll = async () => {
-    const pokemon = await Pokemon.find({}).sort( { id: 1 } ).collation({locale: "en_US", numericOrdering: true})
+    const pokemon = await Pokemon.find({}).sort( { id: 1 } ).limit(50)
     logger.info("Retrieved All Pokemon")
     return pokemon
 }

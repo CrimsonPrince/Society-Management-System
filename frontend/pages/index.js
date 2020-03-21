@@ -47,23 +47,25 @@ const Pokemon = props => (
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  tile: {
-    height: '150',
-    width: '150',
   },
   icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
+    
+  }
+}));
+
+const tileStyles = makeStyles(theme => ({
+  root: {
+    'max-height': '200px',
+    'max-width': '200px',
+    'min-width' : '80px',
+    'min-height' : '80px',
+    margin: '5px',
   },
 }));
 
 export default function Index(props) {
   const classes = useStyles();
+  const tiles = tileStyles();
   return (
   <Layout>
   {/* <GridList cellHeight={160} cols={3}>
@@ -74,9 +76,10 @@ export default function Index(props) {
       ))}
       </GridList> */}
 
-      <GridList cellHeight={160} cellWidth={160} className={classes.gridList}>
+      <GridList className={classes.gridList}>
         {props.pokemons.map(pokemon => (
-          <GridListTile  cellHeight={160} cellWidth={160} key={pokemon.imageurl}>
+          <Link href="/p/[id]" as={`/p/${pokemon.id}`}>
+          <GridListTile classes={tiles} key={pokemon.imageurl}>
             <img src={pokemon.imageurl} alt={pokemon.name} />
             <GridListTileBar
               title={pokemon.name}
@@ -87,6 +90,7 @@ export default function Index(props) {
               }
             />
           </GridListTile>
+          </Link>
         ))}
       </GridList>
   </Layout>
