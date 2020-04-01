@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const pino = require('pino')
 const logger = pino({ level: process.env.LOG_LEVEL || 'info' })
+const limit = process.env.LIMIT
 
 const pokemonSchema = mongoose.Schema({
     name: { type: String },
@@ -36,7 +37,14 @@ const pokemonSchema = mongoose.Schema({
 
 
 pokemonSchema.statics.getAll = async () => {
-    const pokemon = await Pokemon.find({}).sort( { id: 1 } ).limit(100)
+    const pokemon = await Pokemon.find({}).sort( { id: 1 } )
+    logger.info("Retrieved All Pokemon")
+    return pokemon
+}
+
+pokemonSchema.statics.getAllPage = async (page) => {
+    logger.info("Page " + limit)
+    const pokemon = await Pokemon.find({}).sort( { id: 1 } ).skip(page * parseInt(limit)).limit(parseInt(limit))
     logger.info("Retrieved All Pokemon")
     return pokemon
 }
