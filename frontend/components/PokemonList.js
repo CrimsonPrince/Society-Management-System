@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
     "justify-content": "center",
+    "background": "linear-gradient(to right, ${props.color[0]} 50%, ${props.color} 50%)",
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -29,13 +30,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function index(props) {
     const classes = useStyles();
-    
+
     return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={4}>
         {props.pokemons.map(pokemon => (
           <Link href="/p/[id]" as={`/p/${pokemon.id}`}>
-          <GridListTile style={{height: '180px', width: '180px', margin: "5px",}} key={pokemon.imageurl}>
+          <GridListTile style={{height: '180px', width: '180px', margin: "5px", background: `linear-gradient(to left, ${pokemon.color[0]} 50%, ${pokemon.color} 50%)` }} key={pokemon.imageurl}>
             <img src={pokemon.imageurl} alt={pokemon.name} />
             <GridListTileBar
               title={pokemon.name}
