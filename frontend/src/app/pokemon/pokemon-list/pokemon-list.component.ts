@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
+import { Pokemon } from '../pokemon.model';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -8,30 +9,13 @@ import { PokemonService } from '../pokemon.service';
 })
 export class PokemonListComponent implements OnInit {
 
-
-  pokemons = [
-    {
-      name : "Squirtle",
-      description: "Squirtles Hai",
-      imageurl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png"
-    },
-    {
-      name : "Squirtle",
-      description: "Squirtles Hai",
-      imageurl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png"
-    },
-    {
-      name : "Squirtle",
-      description: "Squirtles Hai",
-      imageurl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/021.png"
-    }
-  ]
+  public pokemons: Pokemon[];
 
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
     this.pokemonService.getAllPokemon().subscribe( data => {
-      console.log(typeof(data));
+      this.pokemons = data;
     })
   }
 

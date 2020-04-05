@@ -1,4 +1,15 @@
 img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+}
+
+#list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-item {
+  margin: 5px;
 }

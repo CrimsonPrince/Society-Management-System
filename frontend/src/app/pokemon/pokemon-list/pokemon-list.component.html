@@ -1,5 +1,5 @@
-<mat-grid-list cols="3">
-  <mat-grid-tile *ngFor="let pokemon of pokemons">
-      <img class="tile-image" src={{pokemon.imageurl}}>
-  </mat-grid-tile>
-</mat-grid-list>
+<div id="list" >
+  <div class="list-item" style="background:linear-gradient(to left, {{pokemon.color[0]}} 50%, {{pokemon.color}} 50%);" *ngFor="let pokemon of pokemons">
+      <img src={{pokemon.imageurl}}>
+  </div>
+</div>

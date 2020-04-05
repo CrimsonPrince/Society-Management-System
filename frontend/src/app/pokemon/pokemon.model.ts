@@ -1,0 +1,30 @@
+export interface Pokemon {
+  name: string;
+  id: number;
+  imageurl: string;
+  xdescription: string;
+  ydescription: string;
+  height: string;
+  category: string;
+  weight: string;
+  typeofpokemon: string[];
+  weaknesses: string[];
+  evolutions: number[];
+  abilities: string[];
+  color: string[];
+  hp: number;
+  attack: number;
+  defense: number;
+  special_attack: number;
+  special_defense: number;
+  speed: number;
+  total: number;
+  male_percentage: string;
+  female_percentage: string;
+  genderless: number;
+  cycles: string;
+  egg_groups: string;
+  evolvedfrom: number;
+  reason: string;
+  base_exp: string;
+}
