@@ -3,13 +3,26 @@ img {
   height: 150px;
 }
 
-#list {
+#pokemon-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 
-.list-item {
+.pokemon-list-item {
   margin: 5px;
+  position:relative;
+}
+
+.pokemon-name {
+  width:100%;
+  color:#FFFFFF;
+  background-color:#000000;
+  float:left;
+  position:absolute;
+  top:87%;
+  left: 0px;
+  text-align: center;
+  opacity: 70%;
 }
