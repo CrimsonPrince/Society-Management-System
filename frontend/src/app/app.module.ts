@@ -11,12 +11,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PokemonInfoComponent } from './pokemon/pokemon-info/pokemon-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    PokemonListComponent
+    PokemonListComponent,
+    PokemonInfoComponent
   ],
   imports: [
     BrowserModule,
