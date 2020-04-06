@@ -32,7 +32,6 @@ export class PokemonInfoComponent implements OnInit {
         document.documentElement.style.setProperty('--secondary-color', this.pokemon.color[0]);
         document.documentElement.style.setProperty('--primary-dark', this.Color(this.pokemon.color[0]).darken(0.25));
       }
-      document.documentElement.style.setProperty('--hp', String(255 / this.pokemon.hp) + "%");
     });
   }
 

@@ -12,13 +12,15 @@ import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.compon
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonInfoComponent } from './pokemon/pokemon-info/pokemon-info.component';
+import { StatBarComponent } from './pokemon/pokemon-info/stat-bar/stat-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     PokemonListComponent,
-    PokemonInfoComponent
+    PokemonInfoComponent,
+    StatBarComponent
   ],
   imports: [
     BrowserModule,

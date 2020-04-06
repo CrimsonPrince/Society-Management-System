@@ -1,0 +1,13 @@
+$color: var(--color);
+$value: var(--value);
+
+#stat-bar {
+  width:100%;
+  background: #ededed;
+}
+
+#stat {
+  background: $color;
+  width: $value;
+  padding-left: 10px;
+}

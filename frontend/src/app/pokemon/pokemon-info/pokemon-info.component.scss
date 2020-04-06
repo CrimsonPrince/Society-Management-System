@@ -1,7 +1,6 @@
 $primary: var(--primary-color, red);
 $secondary: var(--secondary-color);
 $dark: var(--primary-dark);
-$hp: var(--hp);
 
 body {
   color: #FFFFFF;
@@ -64,12 +63,9 @@ body {
   padding-left: 2%;
 }
 
-#pokemon-info-hp-bar {
-  width:60%;
-  background: #ededed;
-}
-
-#pokemon-info-hp {
-  background: green;
-  width: $hp;
+.stat-bars {
+  width: 70%;
+  display: block;
+  float: right;
+  padding-right: 20px;
 }

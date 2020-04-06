@@ -6,7 +6,7 @@
       <img [src]="pokemon.imageurl">
     </div>
   <div id="pokemon-info-stats">
-    <div id="pokemon-info-hp-bar"> <div id="pokemon-info-hp"> {{pokemon.hp}} </div> </div>
+   <span> HP: </span> <app-stat-bar class="stat-bars" color={{pokemon.color[0]}} [max]=255 value=40> </app-stat-bar>
   </div>
   <p>
     {{pokemon.xdescription}}
