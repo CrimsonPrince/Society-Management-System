@@ -1,5 +1,5 @@
 <div id="pokemon-list" >
-  <div [routerLink]="['/create']" class="pokemon-list-item" style="background:linear-gradient(to left, {{pokemon.color[0]}} 50%, {{pokemon.color}} 50%);" *ngFor="let pokemon of pokemons">
+  <div [routerLink]="['/pokemon', pokemon.id]" class="pokemon-list-item" style="background:linear-gradient(to left, {{pokemon.color[0]}} 50%, {{pokemon.color}} 50%);" *ngFor="let pokemon of pokemons">
       <img src={{pokemon.imageurl}}>
       <span class="pokemon-name"> {{pokemon.name}} </span>
   </div>
