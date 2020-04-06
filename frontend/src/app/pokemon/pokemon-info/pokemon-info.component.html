@@ -1,9 +1,17 @@
-<div style="background:linear-gradient(to left, {{pokemon.color[0]}} 50%, {{pokemon.color}} 50%);" class="pokemon-info-container">
+<div class="pokemon-info-container">
   <div class="pokemon-info-container-center">
-    <h1 id="pokemon-info-name" [ngStyle]="{background: pokemon.color[0]}"> {{pokemon.name}} </h1>
+    <h1 id="pokemon-info-name"> {{pokemon.name}} </h1>
     <div id="pokemon-info-summary">
+      <div id="pokemon-info-image">
       <img [src]="pokemon.imageurl">
-      <h2 [ngStyle]="{background: pokemon.color[0]}"> Profile </h2>
+    </div>
+  <div id="pokemon-info-stats">
+    <div id="pokemon-info-hp-bar"> <div id="pokemon-info-hp"> {{pokemon.hp}} </div> </div>
+  </div>
+  <p>
+    {{pokemon.xdescription}}
+  </p>
+      <h2> Profile </h2>
     </div>
   </div>
 </div>

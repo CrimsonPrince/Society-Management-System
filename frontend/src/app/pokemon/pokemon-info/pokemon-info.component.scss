@@ -1,0 +1,75 @@
+$primary: var(--primary-color, red);
+$secondary: var(--secondary-color);
+$dark: var(--primary-dark);
+$hp: var(--hp);
+
+body {
+  color: #FFFFFF;
+}
+
+.pokemon-info-container {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, $primary 50%, $secondary 50%);
+}
+
+.pokemon-info-container-center {
+  margin: auto;
+  width: 50%;
+  padding-top: 5%;
+}
+
+#pokemon-info-name {
+  margin: auto;
+  display: block;
+  width: 50%;
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  background: $dark;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#pokemon-info-summary {
+  margin: auto;
+  display: block;
+  width: 50%;
+  background: #fff;
+  padding-top: 5%;
+}
+
+#pokemon-info-image {
+  width: 30%;
+  display: inline-block;
+}
+
+#pokemon-info-image img {
+  width: 100%;
+}
+
+#pokemon-info-stats {
+  width: 60%;
+  display: inline-block;
+  padding-left: 10%
+}
+
+#pokemon-info-summary h2 {
+  color: #fff;
+  font-weight: 400;
+  width: 90%;
+  margin: auto;
+  background: $dark;
+  padding-left: 2%;
+}
+
+#pokemon-info-hp-bar {
+  width:60%;
+  background: #ededed;
+}
+
+#pokemon-info-hp {
+  background: green;
+  width: $hp;
+}
