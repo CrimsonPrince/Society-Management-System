@@ -20,7 +20,7 @@ export class PokemonInfoComponent implements OnInit {
   ngOnInit(): void {
     this.pokemonService.getPokemon(this.route.snapshot.paramMap.get('id')).subscribe( data => {
       this.pokemon = data;
-      var color = this.Color(this.pokemon.color[0]).darken(0.5);
+      const color = this.Color(this.pokemon.color[0]).darken(0.5);
       console.log(color.toString());
       if (this.pokemon.color.length > 1){
         document.documentElement.style.setProperty('--primary-color', this.pokemon.color[1]);

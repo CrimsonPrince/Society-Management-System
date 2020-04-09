@@ -4,7 +4,6 @@ import { Pokemon } from './pokemon.model';
 
 @Injectable({ providedIn: "root"})
 export class PokemonService {
-  private pokemon: any[] = [];
 
   constructor(private http: HttpClient) {}
 

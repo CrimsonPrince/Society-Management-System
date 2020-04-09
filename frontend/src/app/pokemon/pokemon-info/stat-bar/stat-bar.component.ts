@@ -11,13 +11,14 @@ export class StatBarComponent implements OnInit {
   @Input() color: string;
   @Input() max: number;
 
+  public precentage: string;
+
   constructor() { }
 
   ngOnInit(): void {
     document.documentElement.style.setProperty('--color', this.color);
-    document.documentElement.style.setProperty('--value', String(Math.floor(this.value / this.max * 100)) + "%");
-    console.log(this.value);
-    console.log("Hi");
+    this.precentage = String(Math.floor(this.value / this.max * 100)) + "%";
+    // document.getElementById("stat").style.width = precentage;
   }
 
 }
