@@ -21,6 +21,15 @@ router.get('/pokemon/:pokemonId', async (req, res) => {
     }
 })
 
+router.post('/pokemon/', async (req, res) => {
+    try {
+        status = await Pokemon.addPokemon(req.body)
+        res.send(status)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 router.get('/pokemons/:page', async (req, res) => {
     try {
         pokemon = await Pokemon.getAllPage(req.params.page)

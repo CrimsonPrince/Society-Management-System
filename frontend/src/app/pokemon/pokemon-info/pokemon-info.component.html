@@ -3,8 +3,8 @@
     <h1 id="pokemon-info-name"> {{pokemon.name}} </h1>
     <div id="pokemon-info-summary">
       <div id="pokemon-info-image">
-      <span class="pokemon-info-type"  style="background-color: {{ pokemon.color[1] }};">  {{ pokemon.typeofpokemon[0] }}</span>
-      <span *ngIf="pokemon.typeofpokemon.length > 1" class="pokemon-info-type"  style="background-color: {{ pokemon.color[0] }};">  {{ pokemon.typeofpokemon[1] }}</span>
+      <span class="pokemon-info-type"  style="background-color: {{ pokemon.color[0] }};">  {{ pokemon.typeofpokemon[0] }}</span>
+      <span *ngIf="pokemon.typeofpokemon.length > 1" class="pokemon-info-type"  style="background-color: {{ pokemon.color[1] }};">  {{ pokemon.typeofpokemon[1] }}</span>
       <img [src]="pokemon.imageurl">
     </div>
   <div id="pokemon-info-stats">

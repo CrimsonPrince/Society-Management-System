@@ -58,6 +58,11 @@ pokemonSchema.statics.findPokemonById = async(pokemonId) => {
     return pokemon
 }
 
+pokemonSchema.statics.addPokemon = async(pokemon) => {
+    console.log(pokemon.name)
+    return true
+}
+
 const Pokemon = mongoose.model('Pokemon', pokemonSchema)
 
 module.exports = Pokemon
