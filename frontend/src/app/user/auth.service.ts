@@ -42,7 +42,7 @@ export class AuthService {
     }
 
     createUser(fname: string, lname: string, email: string, address: string, password: string, gender: string) {
-      return this.http.post('http://localhost:3001/users', {
+      return this.http.post('http://localhost:3001/register', {
         fname,
         lname,
         email,

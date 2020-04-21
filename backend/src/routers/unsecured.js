@@ -4,19 +4,31 @@ const jwt = require("jsonwebtoken")
 const passport = require('passport')
 const pino = require('pino')
 const logger = pino({ level: process.env.LOG_LEVEL || 'info' })
+const { check, validationResult } = require('express-validator')
 
 const router = express.Router()
 const key = process.env.JWT_KEY
 
+  // Create User Route
+router.post('/register', [ 
+  check('fname').not().isEmpty().withMessage('Name is required'),
+  check('email').not().isEmpty().isEmail().normalizeEmail(),
+  check('password').escape().isLength({ min: 5 })
+], async (req, res) => {
+ 
+  try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+          return res.status(422).json({ errors: errors.array() });
+      }
 
-//When the user sends a post request to this route, passport authenticates the user based on the
-//middleware created previously
-router.post('/register', passport.authenticate('register', { session : false }) , async (req, res, next) => {
-    res.json({
-      message : 'Signup successful',
-      user : req.user
-    });
-  });
+      const user = new User(req.body)
+      await user.save()
+      res.status(201).send( user )
+  } catch (error) {
+      res.status(400).send(error)
+  }
+})
   
 
  router.post('/login', async (req, res, next) => {

@@ -14,26 +14,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-// Create User Route
-router.post('/', [ 
-    check('name').not().isEmpty().withMessage('Name is required'),
-    check('email').not().isEmpty().isEmail().normalizeEmail(),
-    check('password').escape().isLength({ min: 5 })
-], async (req, res) => {
-   
-    try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
-        }
-
-        const user = new User(req.body)
-        await user.save()
-        res.status(201).send( user )
-    } catch (error) {
-        res.status(400).send(error)
-    }
-})
 
 //Get Current Logged in User with JWT
 router.get('/profile', async(req, res) => {

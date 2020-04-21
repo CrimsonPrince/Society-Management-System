@@ -19,7 +19,7 @@ export class CreateUserComponent implements OnInit {
       lname: '',
       email: ['', [Validators.required]],
       address: '',
-      password: ['', [Validators.required, Validators.minLength(10)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
       gender: ''
   });
   }
@@ -31,10 +31,10 @@ export class CreateUserComponent implements OnInit {
     const val = this.form.value;
     console.log(val);
     if (this.form.dirty && this.form.valid) {
-      this.authService.createUser(val.fname, val.lname, val.email, val.address, val.password, val.gender)
+        this.authService.createUser(val.fname, val.lname, val.email, val.address, val.password, val.gender)
             .subscribe(
-                () => {
-                    console.log("User is Created");
+                (val) => {
+                    console.log(val);
                 }
             );
     }
