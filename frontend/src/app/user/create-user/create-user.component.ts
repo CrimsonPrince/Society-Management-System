@@ -10,36 +10,22 @@ import {FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGr
 })
 export class CreateUserComponent implements OnInit {
 
-  form:FormGroup;
+  constructor(private authService: AuthService ) {
 
-  constructor( private fb:FormBuilder,  private authService: AuthService ) {
-
-    this.form = this.fb.group({
-      fname: '',
-      lname: '',
-      email: ['', [Validators.required]],
-      address: '',
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      gender: ''
-  });
   }
 
   ngOnInit(): void {
   }
 
-  register() {
-    const val = this.form.value;
-    console.log(val);
-    if (this.form.dirty && this.form.valid) {
-        this.authService.createUser(val.fname, val.lname, val.email, val.address, val.password, val.gender)
-            .subscribe(
-                (val) => {
-                    console.log(val);
-                }
-            );
+  onSignup(form: NgForm) {
+
+    if ( form.invalid) {
+      console.log("Form Invalid");
+      return;
     }
-    else {
-      alert("Please Fill in Form");
-    }
+    this.authService.createUser(form.value.name, form.value.email, form.value.password, form.value.address, form.value.gender).subscribe(data => {
+      console.log(data);
+    });
   }
+
 }

@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PokemonInfoComponent } from './pokemon/pokemon-info/pokemon-info.component';
 import { StatBarComponent } from './pokemon/pokemon-info/stat-bar/stat-bar.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
     PokemonListComponent,
     PokemonInfoComponent,
     StatBarComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

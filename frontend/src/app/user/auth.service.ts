@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from "./user.model";
+import { CreateUser } from "./create.model";
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
@@ -41,14 +42,8 @@ export class AuthService {
         return moment(expiresAt);
     }
 
-    createUser(fname: string, lname: string, email: string, address: string, password: string, gender: string) {
-      return this.http.post('http://localhost:3001/register', {
-        fname,
-        lname,
-        email,
-        address,
-        password,
-        gender
-      });
+    createUser(name: string, email: string, address: string, password: string, gender: string) {
+      const createModel: CreateUser = { name, email, password, address, gender}
+      return this.http.post('http://localhost:3001/register', createModel);
     }
 }

@@ -1,35 +1,21 @@
-<mat-card class="my-card">
-<mat-card-content>
-  <form [formGroup]="form" (ngSubmit)="register()" class="my-form">
-     <mat-form-field class="full-width">
-            <mat-label>First Name</mat-label>
-            <input  matInput  formControlName="fname" placeholder="First name" name="fname" required>
-         </mat-form-field>
-         <mat-form-field class="full-width">
-            <mat-label>Last Name</mat-label>
-            <input  matInput  formControlName="lname" placeholder="Last Name" name="lname" required>
-         </mat-form-field>
-         <mat-form-field class="full-width">
-            <mat-label>Address</mat-label>
-            <input  matInput formControlName="address" placeholder="Address" name="address" required>
-         </mat-form-field>
-         <mat-form-field class="full-width">
-            <mat-label>Email</mat-label>
-            <input  matInput  type="email" formControlName="email" placeholder="Email" name="email" required>
-
-         </mat-form-field>
-         <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input  matInput  formControlName="password" placeholder="Password" name="password" required>
-         </mat-form-field>
-
-  <label class="radio-label">Gender:</label>
-  <mat-radio-group formControlName="gender" name="gender">
-    <mat-radio-button labelPosition="before" value="male">Male</mat-radio-button>
-    <mat-radio-button labelPosition="before" value="female">Female</mat-radio-button>
-  </mat-radio-group>
-  <br>
-    <button type="submit" mat-button color="primary" required>REGISTER</button>
-</form>
-</mat-card-content>
+<mat-card>
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
+    <mat-form-field>
+      <input type="name" name="name" ngModel matInput placeholder="Name" #nameInput="ngModel" required>
+      <mat-error *ngIf="nameInput.invalid">Please enter a valid Name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="address" name="address" ngModel matInput placeholder="Address" #addressInput="ngModel" required>
+      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Signup</button>
+  </form>
 </mat-card>
