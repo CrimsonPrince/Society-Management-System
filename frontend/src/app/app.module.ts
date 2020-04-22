@@ -16,11 +16,12 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PokemonInfoComponent } from './pokemon/pokemon-info/pokemon-info.component';
 import { StatBarComponent } from './pokemon/pokemon-info/stat-bar/stat-bar.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
+import { AuthInterceptor } from './user/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { LoginComponent } from './user/login/login.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,7 +14,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-
 //Get Current Logged in User with JWT
 router.get('/profile', async(req, res) => {
     try {
