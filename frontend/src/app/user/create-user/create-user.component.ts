@@ -18,7 +18,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSignup(form: NgForm) {
-
+    console.log(form.value);
     if ( form.invalid) {
       console.log("Form Invalid");
       return;

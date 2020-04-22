@@ -11,9 +11,9 @@ const key = process.env.JWT_KEY
 
   // Create User Route
 router.post('/register', [ 
-  check('fname').not().isEmpty().withMessage('Name is required'),
+  check('name').not().isEmpty().withMessage('Name is required'),
   check('email').not().isEmpty().isEmail().normalizeEmail(),
-  check('password').escape().isLength({ min: 5 })
+  check('password').escape().isLength({ min: 7 })
 ], async (req, res) => {
  
   try {

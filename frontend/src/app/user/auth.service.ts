@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from "./user.model";
 import { CreateUser } from "./create.model";
+import { AuthUser } from "./auth.model";
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
@@ -12,14 +13,13 @@ export class AuthService {
 
     }
 
-    login(email:string, password:string ) {
-        return this.http.post<User>('/login', {email, password}).pipe(tap(val => this.setSession(val)));
+    login(email: string, password: string ) {
+        return this.http.post<AuthUser>('http://localhost:3000/login', {email, password}).pipe(tap(val => this.setSession(val)));
     }
 
     private setSession(authResult) {
         const expiresAt = moment().add(authResult.expiresIn,'second');
-
-        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('id_token', authResult.token);
         localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
     }
 
@@ -28,6 +28,9 @@ export class AuthService {
         localStorage.removeItem("expires_at");
     }
 
+    getToken() {
+        return localStorage.getItem("id_token");
+    }
     public isLoggedIn() {
         return moment().isBefore(this.getExpiration());
     }
@@ -42,8 +45,9 @@ export class AuthService {
         return moment(expiresAt);
     }
 
-    createUser(name: string, email: string, address: string, password: string, gender: string) {
-      const createModel: CreateUser = { name, email, password, address, gender}
-      return this.http.post('http://localhost:3001/register', createModel);
+    createUser(name: string, email: string, password: string, address: string, gender: string) {
+      const createModel: CreateUser = { name, email, password, address, gender};
+      console.log(createModel);
+      return this.http.post('http://localhost:3000/register', createModel);
     }
 }
