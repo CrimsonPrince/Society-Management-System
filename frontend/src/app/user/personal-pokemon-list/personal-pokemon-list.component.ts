@@ -10,16 +10,29 @@ import { AuthService} from '../auth.service';
 export class PersonalPokemonListComponent implements OnInit {
 
   public pokemons: Pokemon[];
+  public loggedIn: boolean;
 
   constructor(private userService: AuthService) { }
 
   ngOnInit(): void {
     this.userService.getPokemon().subscribe( data => {
-      console.log(data);
+        this.pokemons = (data as Pokemon[]);
     });
+    this.loggedIn = this.userService.isLoggedIn();
   }
 
-  remove() {
-    console.log("removed");
+  remove(pokemon) {
+    this.userService.removePokemon(pokemon._id).subscribe(data => {
+      console.log(data);
+    });
+    let index = -1;
+    this.pokemons.forEach(function (poke, i) {
+      if(poke._id == pokemon._id)
+      {
+        index = i;
+      }
+    });
+    if (index !== -1) this.pokemons.splice(index, 1);
+    console.log(this.pokemons);
   }
 }

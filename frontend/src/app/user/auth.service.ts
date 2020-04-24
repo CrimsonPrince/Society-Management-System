@@ -21,6 +21,10 @@ export class AuthService {
       return this.http.post("http://localhost:3000/users/pokemon", {"pokemonId": pokemonId});
     }
 
+    removePokemon(pokemonId) {
+      return this.http.post('http://localhost:3000/users/pokemon/delete', {"pokemonId": pokemonId});
+    }
+
     login(email: string, password: string ) {
         return this.http.post<AuthUser>('http://localhost:3000/login', {email, password}).pipe(tap(val => this.setSession(val)));
     }

@@ -18,14 +18,14 @@ export class PokemonListComponent implements OnInit {
   ngOnInit(): void {
     this.pokemonService.getAllPokemon().subscribe(data => {
       this.pokemons = data;
+      console.log(this.pokemons);
     });
 
     this.loggedIn = this.authService.isLoggedIn();
-    console.log(this.loggedIn);
   }
 
   add(pokemon) {
-    this.authService.addPokemon(pokemon.id).subscribe(data =>
+    this.authService.addPokemon(pokemon._id).subscribe(data =>
       console.log(data)
     );
   }

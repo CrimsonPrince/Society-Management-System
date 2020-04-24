@@ -17,12 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/pokemon', async(req, res) => {
     try {
         user = await User.findUserById(req.user._id)
-        if(user.pokemon.length > 0) {
-            console.log("Active")
-            return user.pokemon
-        }
-        console.log("Hi")
-        return {}
+        res.send(user.pokemons)
     } catch (error) {
         res.status(400).send(error)
     }
@@ -32,6 +27,14 @@ router.post('/pokemon', async (req, res) => {
     try {
         console.log(req.body)
         User.addPokemon(req.user._id, req.body.pokemonId)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
+router.post('/pokemon/delete', async (req, res) => {
+    try {
+        User.removePokemon(req.user._id, req.body.pokemonId)
     } catch (error) {
         res.status(400).send(error)
     }

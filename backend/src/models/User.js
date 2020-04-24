@@ -35,9 +35,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    pokemon: {
-        type: [String]
-    }
+    pokemons: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pokemon' }]
 })
 
 userSchema.pre('save', async function(next){
@@ -54,7 +52,7 @@ userSchema.methods.isValidPassword = async function(password){
   }
 
 userSchema.statics.findUserById = async(userId) => {
-    const user = await User.findById(userId, {password:false, __v: false})
+    const user = await User.findById(userId, {password:false, __v: false}).populate("pokemons")
     if (!user) {
         throw new Error({ error: 'No User Found with This ID' })
     }
@@ -72,7 +70,7 @@ userSchema.statics.deleteUser = async(userId) => {
 }
 
 userSchema.statics.getAll = async () => {
-    const users = await User.find({}, {password: false, __v: false})
+    const users = await User.find({}, {password: false, __v: false}).populate('pokemons')
     logger.info("Retrieved All Users")
     return users
 }
@@ -82,7 +80,10 @@ userSchema.statics.addPokemon = async (userId, pokemonId) => {
     if (!user) {
         throw new Error({ error: 'No User Found with This ID' })
     }
-    if (!user.pokemon.includes(pokemonId)) { user.pokemon.push(pokemonId); }
+    if(user.pokemons == undefined) {
+        user.pokemons = []
+    }
+    if (!user.pokemons.includes(pokemonId)) { user.pokemons.push(pokemonId); }
     user.save()
 }
 
@@ -91,8 +92,8 @@ userSchema.statics.removePokemon = async (userId, pokemonId) => {
     if (!user) {
         throw new Error({ error: 'No User Found with This ID' })
     }
-    const index = user.pokemon.indexOf(pokemonId);
-    if (index !== -1) user.pokemon.splice(index, 1);
+    const index = user.pokemons.indexOf(pokemonId);
+    if (index !== -1) user.pokemons.splice(index, 1);
     user.save()
 }
 
