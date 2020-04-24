@@ -27,17 +27,9 @@ img {
   opacity: 70%;
 }
 
-.pokemon-add {
+.pokemon-remove {
   position: absolute;
   top: 1%;
   left: 1%;
   color: white;
 }
-
-.pokemon-remove {
-  position: absolute;
-  top: 1%;
-  left: 80%;
-  color: white;
-}
-

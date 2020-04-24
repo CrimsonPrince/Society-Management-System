@@ -1,0 +1,7 @@
+<div id="pokemon-list" >
+  <div [routerLink]="['/pokemon', pokemon.id]" class="pokemon-list-item" style="background:linear-gradient(to right, {{pokemon.color[0]}} 50%, {{pokemon.color}} 50%);" *ngFor="let pokemon of pokemons">
+      <img src={{pokemon.imageurl}}>
+      <span (click)="remove()" class="pokemon-remove"> <mat-icon> remove_circle </mat-icon> </span>
+      <span class="pokemon-name"> {{pokemon.name}} </span>
+  </div>
+</div>

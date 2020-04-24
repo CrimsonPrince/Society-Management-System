@@ -13,6 +13,14 @@ export class AuthService {
 
     }
 
+    getPokemon() {
+      return this.http.get("http://localhost:3000/users/pokemon");
+    }
+
+    addPokemon(pokemonId) {
+      return this.http.post("http://localhost:3000/users/pokemon", {"pokemonId": pokemonId});
+    }
+
     login(email: string, password: string ) {
         return this.http.post<AuthUser>('http://localhost:3000/login', {email, password}).pipe(tap(val => this.setSession(val)));
     }
@@ -32,7 +40,7 @@ export class AuthService {
         return localStorage.getItem("id_token");
     }
     public isLoggedIn() {
-        return moment().isBefore(this.getExpiration());
+        return moment().isAfter(this.getExpiration());
     }
 
     isLoggedOut() {

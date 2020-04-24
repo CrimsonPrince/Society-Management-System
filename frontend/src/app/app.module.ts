@@ -11,8 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -22,6 +23,7 @@ import { StatBarComponent } from './pokemon/pokemon-info/stat-bar/stat-bar.compo
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './user/auth-interceptor';
+import { PersonalPokemonListComponent } from './user/personal-pokemon-list/personal-pokemon-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AuthInterceptor } from './user/auth-interceptor';
     PokemonInfoComponent,
     StatBarComponent,
     CreateUserComponent,
-    LoginComponent
+    LoginComponent,
+    PersonalPokemonListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +51,9 @@ import { AuthInterceptor } from './user/auth-interceptor';
     MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
+    MatIconModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
