@@ -5,12 +5,23 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { User } from "./user.model";
 import { CreateUser } from "./create.model";
 import { AuthUser } from "./auth.model";
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
 
+    private authStatusListener = new Subject<boolean>();
+
     constructor(private http: HttpClient) {
 
+    }
+
+    getAuthStatusListener() {
+      return this.authStatusListener.asObservable();
+    }
+
+    getAuthStatus() {
+      return this.authStatusListener;
     }
 
     getPokemon() {
@@ -26,6 +37,7 @@ export class AuthService {
     }
 
     login(email: string, password: string ) {
+        this.authStatusListener.next(true);
         return this.http.post<AuthUser>('http://localhost:3000/login', {email, password}).pipe(tap(val => this.setSession(val)));
     }
 

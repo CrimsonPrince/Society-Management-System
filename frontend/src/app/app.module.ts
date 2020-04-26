@@ -24,6 +24,7 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './user/auth-interceptor';
 import { PersonalPokemonListComponent } from './user/personal-pokemon-list/personal-pokemon-list.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PersonalPokemonListComponent } from './user/personal-pokemon-list/perso
     StatBarComponent,
     CreateUserComponent,
     LoginComponent,
-    PersonalPokemonListComponent
+    PersonalPokemonListComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

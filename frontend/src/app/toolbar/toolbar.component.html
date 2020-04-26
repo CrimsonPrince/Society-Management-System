@@ -4,14 +4,20 @@
   </span>
   <span class="spacer"></span>
   <ul>
-    <li>
-      <a mat-button routerLink="/user" routerLinkActive="mat-accent">New Post</a>
+    <li *ngIf="isLoggedIn">
+      <a mat-button routerLink="/user/pokemon" routerLinkActive="mat-accent">Personal Pokedex</a>
     </li>
-    <li>
+    <li *ngIf="!isLoggedIn">
       <a mat-button routerLink="/user/login" routerLinkActive="mat-accent">Login</a>
     </li>
-    <li>
+    <li *ngIf="!isLoggedIn">
       <a mat-button routerLink="/user/create" routerLinkActive="mat-accent">Signup</a>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <a mat-button routerLink="/user/edit" routerLinkActive="mat-accent">Edit Profile</a>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <a mat-button (click)="logOut()" routerLinkActive="mat-accent">Logout</a>
     </li>
   </ul>
 </mat-toolbar>

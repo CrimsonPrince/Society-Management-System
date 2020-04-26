@@ -1,0 +1,30 @@
+<mat-card>
+  <div id="formContent">
+  <img mat-card-image src="../../../assets/PokemonCrop.png" alt="Pikachu">
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
+    <h1> Edit User </h1>
+    <mat-form-field>
+      <input type="name" name="name" ngModel matInput placeholder="Name" minlength="3" #nameInput="ngModel" required>
+      <mat-error *ngIf="nameInput.invalid">Please enter a valid Name of 3 characters of more.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" name="password" ngModel matInput minlength="7" placeholder="Password" #passwordInput="ngModel" required>
+      <mat-error *ngIf="passwordInput.invalid">Please enter a password 7 characters or longer.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="address" name="address" ngModel matInput minlength="4" placeholder="Address" #addressInput="ngModel" required>
+      <mat-error *ngIf="addressInput.invalid">Please enter a valid Address of 4 characters or more.</mat-error>
+    </mat-form-field>
+    <mat-radio-group name="gender" ngModel matInput #genderInput="ngModel" required>
+      <mat-radio-button labelPosition="before" value="male">Male</mat-radio-button>
+      <mat-radio-button labelPosition="before" value="female">Female</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <button mat-raised-button color="accent" type="submit">Signup</button>
+  </form>
+</div>
+</mat-card>
