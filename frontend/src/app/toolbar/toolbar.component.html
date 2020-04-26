@@ -1,1 +1,17 @@
-<mat-toolbar color="primary"> Tools </mat-toolbar>
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">Pokedex</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li>
+      <a mat-button routerLink="/user" routerLinkActive="mat-accent">New Post</a>
+    </li>
+    <li>
+      <a mat-button routerLink="/user/login" routerLinkActive="mat-accent">Login</a>
+    </li>
+    <li>
+      <a mat-button routerLink="/user/create" routerLinkActive="mat-accent">Signup</a>
+    </li>
+  </ul>
+</mat-toolbar>

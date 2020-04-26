@@ -1,3 +1,32 @@
+:host {
+  background-color: #2196f3;
+  display: block;
+  height: 100%;
+}
+
+mat-card {
+  margin: auto;
+  width: 40%;
+  top: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 50%;
+}
+
 mat-form-field {
   width: 100%;
+}
+
+#formContent {
+  display: flex;
+  margin: auto;
+}
+
+img {
+  width: 25%;
+  margin-left: auto;
+}
+
+form {
+  margin: auto;
 }

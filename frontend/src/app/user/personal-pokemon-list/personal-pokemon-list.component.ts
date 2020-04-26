@@ -26,13 +26,13 @@ export class PersonalPokemonListComponent implements OnInit {
       console.log(data);
     });
     let index = -1;
-    this.pokemons.forEach(function (poke, i) {
-      if(poke._id == pokemon._id)
+    this.pokemons.forEach(function(poke, i) {
+      if (poke._id === pokemon._id)
       {
         index = i;
       }
     });
-    if (index !== -1) this.pokemons.splice(index, 1);
+    if (index !== -1) { this.pokemons.splice(index, 1); }
     console.log(this.pokemons);
   }
 }
