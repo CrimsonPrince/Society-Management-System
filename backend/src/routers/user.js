@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require('../models/User')
+const bcrypt = require('bcryptjs')
 const { check, validationResult } = require('express-validator');
 
 const router = express.Router()
@@ -43,7 +44,34 @@ router.post('/pokemon/delete', async (req, res) => {
 //Get Current Logged in User with JWT
 router.get('/profile', async(req, res) => {
     try {
-        res.send(req.user)
+        user = await User.findUserById(req.user._id)
+        res.send(user)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
+router.post('/edit', async(req, res) => {
+    try {
+        const _id = req.user._id
+        const user = await User.findOne({ _id })
+        console.log(req.body.password)
+        console.log(user.email)
+        const compare = await bcrypt.compare(req.body.password, user.password)
+        console.log(compare)
+        if(compare) {
+            console.log("hi")
+            user.name = req.body.name
+            user.email = req.body.email
+            user.address = req.body.address
+            user.gender = req.body.gender
+            user.password = req.body.password
+            if(req.body.newpassword != "") user.password = req.body.newpassword
+            user.save()
+            res.send(user)
+        }
+        console.log("Error")
+        res.status(400).send(compare)
     } catch (error) {
         res.status(400).send(error)
     }

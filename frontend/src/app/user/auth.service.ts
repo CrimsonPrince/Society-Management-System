@@ -6,6 +6,8 @@ import { User } from "./user.model";
 import { CreateUser } from "./create.model";
 import { AuthUser } from "./auth.model";
 import { Subject } from "rxjs";
+import { MatGridTileHeaderCssMatStyler } from "@angular/material/grid-list";
+import { EditUser } from "./edit.model";
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
@@ -24,6 +26,10 @@ export class AuthService {
       return this.authStatusListener;
     }
 
+    getUser(){
+      return this.http.get("http://localhost:3000/users/profile");
+    }
+
     getPokemon() {
       return this.http.get("http://localhost:3000/users/pokemon");
     }
@@ -34,6 +40,12 @@ export class AuthService {
 
     removePokemon(pokemonId) {
       return this.http.post('http://localhost:3000/users/pokemon/delete', {"pokemonId": pokemonId});
+    }
+
+    editUser(name: string, email: string, password: string, newpassword: string, address: string, gender: string)
+    {
+      const editModel: EditUser = { name, email, password, newpassword, address, gender};
+      return this.http.post('http://localhost:3000/users/edit', editModel);
     }
 
     login(email: string, password: string ) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-edit-user',
@@ -9,21 +10,25 @@ import { NgForm } from '@angular/forms';
 })
 export class EditUserComponent implements OnInit {
 
-  constructor(private authService: AuthService ) {
+  constructor(private authService: AuthService) {
 
   }
 
-  ngOnInit(): void {
-    this.authService.get
+  public user: User;
+
+  ngOnInit (): void {
+    this.authService.getUser().subscribe(data => {
+      this.user = <User>data;
+    })
   }
 
-  onSignup(form: NgForm) {
+  onEdit (form: NgForm) {
     console.log(form.value);
-    if ( form.invalid) {
+    if (form.invalid) {
       console.log("Form Invalid");
       return;
     }
-    this.authService.createUser(form.value.name, form.value.email, form.value.password, form.value.address, form.value.gender).subscribe(data => {
+    this.authService.editUser(form.value.name, form.value.email, form.value.password, form.value.newpassword, form.value.address, form.value.gender).subscribe(data => {
       console.log(data);
     });
   }
