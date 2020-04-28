@@ -58,6 +58,34 @@ pokemonSchema.statics.findPokemonById = async(pokemonId) => {
     return pokemon
 }
 
+pokemonSchema.statics.searchNames = async(query) => {
+    console.log(query)
+    const pokemon = await Pokemon.find({name: {$regex: query, $options: 'i'}})
+    console.log(pokemon)
+    return pokemon
+}
+
+pokemonSchema.statics.searchLevel = async(query) => {
+    console.log(query)
+    const pokemon = await Pokemon.find({total: {$eq: query}});
+    console.log(pokemon)
+    return pokemon
+}
+
+pokemonSchema.statics.searchCategory = async(query) => {
+    console.log(query)
+    const pokemon = await Pokemon.find({category: {$regex: query, $options: 'i'}})
+    console.log(pokemon)
+    return pokemon
+}
+
+pokemonSchema.statics.searchType = async(query) => {
+    console.log(query)
+    const pokemon = await Pokemon.find({name: {$regex: query, $options: 'i'}})
+    console.log(pokemon)
+    return pokemon
+}
+
 pokemonSchema.statics.addPokemon = async(pokemon) => {
     console.log(pokemon.name)
     return true

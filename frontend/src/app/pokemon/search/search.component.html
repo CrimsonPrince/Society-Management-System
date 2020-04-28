@@ -1,0 +1,13 @@
+<mat-card>
+  <div id="formContent">
+  <img mat-card-image src="../../../assets/pika.png" alt="Pikachu">
+  <form (submit)="onSearch(searchForm)" #searchForm="ngForm">
+    <h1> Search </h1>
+    <mat-form-field>
+      <input matInput name="search" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required>
+      <mat-error *ngIf="emailInput.invalid">Please Enter a search query longer than 3 characters.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Search</button>
+  </form>
+</div>
+</mat-card>

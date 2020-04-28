@@ -21,6 +21,16 @@ router.get('/pokemon/:pokemonId', async (req, res) => {
     }
 })
 
+router.post('/pokemon/search/name', async (req, res) => {
+    try {
+        console.log(req.body.query)
+        status = await Pokemon.searchNames(req.body.query)
+        res.send(status)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 router.post('/pokemon/', async (req, res) => {
     try {
         status = await Pokemon.addPokemon(req.body)
