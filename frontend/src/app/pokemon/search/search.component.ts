@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 import { NgForm } from '@angular/forms';
 import { Pokemon } from '../pokemon.model';
+import { AuthService } from 'src/app/user/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -10,10 +11,13 @@ import { Pokemon } from '../pokemon.model';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService, private authService: AuthService) {
+    this.loggedIn = this.authService.isLoggedIn();
+  }
 
   default = 'name';
   public pokemons: Pokemon[];
+  public loggedIn: boolean;
 
   ngOnInit(): void {
 
@@ -31,4 +35,9 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  add(pokemon) {
+    this.authService.addPokemon(pokemon._id).subscribe(data =>
+      console.log(data)
+    );
+  }
 }

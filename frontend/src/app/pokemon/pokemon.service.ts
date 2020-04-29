@@ -17,8 +17,8 @@ export class PokemonService {
 
   search(query: string, type: string) {
     console.log(type)
-    if(type = "name") { return this.http.post<Pokemon[]>('http://localhost:3000/pokemon/search/name', { "query": query}); }
-    if(type = "level") { return this.http.post<Pokemon[]>('http://localhost:3000/pokemon/search/level', { "query": query}); }
-    if(type = "category") { return this.http.post<Pokemon[]>('http://localhost:3000/pokemon/search/category', { "query": query}); }
+    if(type == "name") { return this.http.post<Pokemon[]>('http://localhost:3000/pokemon/search/name', { "query": query}); }
+    if(type == "level") { return this.http.post<Pokemon[]>('http://localhost:3000/pokemon/search/level', { "query": query}); }
+    if(type == "category") { return this.http.post<Pokemon[]>('http://localhost:3000/pokemon/search/category', { "query": query}); }
   }
 }
