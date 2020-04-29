@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  enterprise-backend:
+    image: enterprise-backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.enterprise-backend-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.enterprise-backend-http.entrypoints=web"
+      - "traefik.http.routers.enterprise-backend-http.rule=Host(`pokeapi.r4.ie`)"
+      - "traefik.http.routers.enterprise-backend-http.middlewares=enterprise-backend-https@docker"
+      - "traefik.http.routers.enterprise-backend.entrypoints=web-secure"
+      - "traefik.http.routers.enterprise-backend.rule=Host(`pokeapi.r4.ie`)"
+      - "traefik.http.routers.enterprise-backend.tls=true"
+      - "traefik.http.routers.enterprise-backend.tls.certresolver=default"
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
+  traefik:
+    internal: true

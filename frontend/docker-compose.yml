@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  enterprise-frontend:
+    image: enterprise-frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.enterprise-frontend-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.enterprise-frontend-http.entrypoints=web"
+      - "traefik.http.routers.enterprise-frontend-http.rule=Host(`poke.r4.ie`)"
+      - "traefik.http.routers.enterprise-frontend-http.middlewares=enterprise-frontend-https@docker"
+      - "traefik.http.routers.enterprise-frontend.entrypoints=web-secure"
+      - "traefik.http.routers.enterprise-frontend.rule=Host(`poke.r4.ie`)"
+      - "traefik.http.routers.enterprise-frontend.tls=true"
+      - "traefik.http.routers.enterprise-frontend.tls.certresolver=default"
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
+  traefik:
+    internal: true

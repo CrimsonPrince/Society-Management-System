@@ -27,30 +27,30 @@ export class AuthService {
     }
 
     getUser(){
-      return this.http.get("http://localhost:3000/users/profile");
+      return this.http.get("https://pokeapi.r4.ie/users/profile");
     }
 
     getPokemon() {
-      return this.http.get("http://localhost:3000/users/pokemon");
+      return this.http.get("https://pokeapi.r4.ie/users/pokemon");
     }
 
     addPokemon(pokemonId) {
-      return this.http.post("http://localhost:3000/users/pokemon", {"pokemonId": pokemonId});
+      return this.http.post("https://pokeapi.r4.ie/users/pokemon", {"pokemonId": pokemonId});
     }
 
     removePokemon(pokemonId) {
-      return this.http.post('http://localhost:3000/users/pokemon/delete', {"pokemonId": pokemonId});
+      return this.http.post('https://pokeapi.r4.ie/users/pokemon/delete', {"pokemonId": pokemonId});
     }
 
     editUser(name: string, email: string, password: string, newpassword: string, address: string, gender: string)
     {
       const editModel: EditUser = { name, email, password, newpassword, address, gender};
-      return this.http.post('http://localhost:3000/users/edit', editModel);
+      return this.http.post('https://pokeapi.r4.ie/users/edit', editModel);
     }
 
     login(email: string, password: string ) {
         this.authStatusListener.next(true);
-        return this.http.post<AuthUser>('http://localhost:3000/login', {email, password}).pipe(tap(val => this.setSession(val)));
+        return this.http.post<AuthUser>('https://pokeapi.r4.ie/login', {email, password}).pipe(tap(val => this.setSession(val)));
     }
 
     private setSession(authResult) {
@@ -84,6 +84,6 @@ export class AuthService {
     createUser(name: string, email: string, password: string, address: string, gender: string) {
       const createModel: CreateUser = { name, email, password, address, gender};
       console.log(createModel);
-      return this.http.post('http://localhost:3000/register', createModel);
+      return this.http.post('https://pokeapi.r4.ie/register', createModel);
     }
 }
