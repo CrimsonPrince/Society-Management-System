@@ -6,15 +6,17 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
 import { PersonalPokemonListComponent } from './user/personal-pokemon-list/personal-pokemon-list.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { SearchComponent } from './pokemon/search/search.component';
 
 
 const routes: Routes = [
   { path: '', component: PokemonListComponent},
+  { path: 'pokemon/search', component: SearchComponent},
   { path: 'pokemon/:id', component: PokemonInfoComponent},
   { path: 'user/create', component: CreateUserComponent },
   { path: 'user/login', component: LoginComponent },
   { path: 'user/pokemon', component: PersonalPokemonListComponent},
-  { path: 'user/edit', component: EditUserComponent}
+  { path: 'user/edit', component: EditUserComponent},
 ];
 
 @NgModule({

@@ -81,7 +81,7 @@ pokemonSchema.statics.searchCategory = async(query) => {
 
 pokemonSchema.statics.searchType = async(query) => {
     console.log(query)
-    const pokemon = await Pokemon.find({name: {$regex: query, $options: 'i'}})
+    const pokemon = await Pokemon.find({typeofpokemon: {$regex: query, $options: 'i'}})
     console.log(pokemon)
     return pokemon
 }

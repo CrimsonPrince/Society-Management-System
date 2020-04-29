@@ -31,6 +31,36 @@ router.post('/pokemon/search/name', async (req, res) => {
     }
 })
 
+router.post('/pokemon/search/level', async (req, res) => {
+    try {
+        console.log(req.body.query)
+        status = await Pokemon.searchLevel(req.body.query)
+        res.send(status)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
+router.post('/pokemon/search/type', async (req, res) => {
+    try {
+        console.log(req.body.query)
+        status = await Pokemon.searchType(req.body.query)
+        res.send(status)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
+router.post('/pokemon/search/category', async (req, res) => {
+    try {
+        console.log(req.body.query)
+        status = await Pokemon.searchCategory(req.body.query)
+        res.send(status)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 router.post('/pokemon/', async (req, res) => {
     try {
         status = await Pokemon.addPokemon(req.body)

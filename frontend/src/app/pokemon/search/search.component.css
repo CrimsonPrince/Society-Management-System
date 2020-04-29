@@ -1,5 +1,4 @@
 :host {
-  background-color: #2196f3;
   display: block;
   height: 100%;
 }
@@ -8,19 +7,72 @@ mat-card {
   margin: auto;
   width: 40%;
   top: 100px;
-  padding: 40px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 50%;
 }
 
-mat-form-field {
-  width: 100%;
+.searchbar {
+  width: 45%;
+  padding: 10px;
 }
 
 #formContent {
+  display: flex;
   margin: auto;
-  width: 70%;
 }
 
-mat-radio-button {
-  padding: 10px;
+img {
+  width: 25%;
+  margin-left: auto;
+}
+
+form {
   margin: auto;
+}
+
+
+#pokemon-list img {
+  width: 150px;
+  height: 150px;
+}
+
+#pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 150px;
+}
+
+.pokemon-list-item {
+  margin: 5px;
+  position:relative;
+}
+
+.pokemon-name {
+  width:100%;
+  color:#FFFFFF;
+  background-color:#000000;
+  float:left;
+  position:absolute;
+  top:87%;
+  left: 0px;
+  text-align: center;
+  opacity: 70%;
+}
+
+.pokemon-add {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  color: white;
+}
+
+.pokemon-remove {
+  position: absolute;
+  top: 1%;
+  left: 80%;
+  color: white;
 }

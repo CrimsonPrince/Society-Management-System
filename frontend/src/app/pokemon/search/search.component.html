@@ -3,11 +3,29 @@
   <img mat-card-image src="../../../assets/pika.png" alt="Pikachu">
   <form (submit)="onSearch(searchForm)" #searchForm="ngForm">
     <h1> Search </h1>
-    <mat-form-field>
-      <input matInput name="search" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required>
-      <mat-error *ngIf="emailInput.invalid">Please Enter a search query longer than 3 characters.</mat-error>
+    <mat-form-field class="searchbar">
+      <input matInput name="query" ngModel type="query" placeholder="Search" #searchInput="ngModel">
+      <mat-error *ngIf="searchInput.invalid">Please enter a query of 3 characters of more.</mat-error>
+      <mat-hint align="end">Search for a Name, Category Or Level</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="searchbar">
+      <mat-label>Type</mat-label>
+      <select matNativeControl ngModel name="type" #typeInput="ngModel" required>
+        <option value="name">Name</option>
+        <option value="category">Category</option>
+        <option value="level">Level</option>
+      </select>
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Search</button>
   </form>
 </div>
 </mat-card>
+
+<div id="pokemon-list" >
+  <div class="pokemon-list-item" style="background:linear-gradient(to right, {{pokemon.color[0]}} 50%, {{pokemon.color}} 50%);" *ngFor="let pokemon of pokemons" #pokemon>
+      <img [routerLink]="['/pokemon', pokemon.id]" src={{pokemon.imageurl}}>
+      <span *ngIf="loggedIn" (click)="add(pokemon)" class="pokemon-add"><mat-icon> add_circle </mat-icon></span>
+      <span class="pokemon-name"> {{pokemon.name}} </span>
+  </div>
+</div>
+
