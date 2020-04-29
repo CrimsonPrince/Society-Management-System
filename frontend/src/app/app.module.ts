@@ -26,6 +26,8 @@ import { AuthInterceptor } from './user/auth-interceptor';
 import { PersonalPokemonListComponent } from './user/personal-pokemon-list/personal-pokemon-list.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { SearchComponent } from './pokemon/search/search.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { SearchComponent } from './pokemon/search/search.component';
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
